@@ -3,13 +3,9 @@
 ## Agenda
 
 1. [Multiplayer with Photon Fusion](#Multiplayer-Photon-Fusion)  
-2. [Audio Basics](#Unity-Audio-Basics)  
-3. [Particle System](#Unity-Particle-System)  
-4. [Lighting Systems](#Unity-Lighting)  
-5. [DOTween](#DO-Tween)  
-6. [Animator Controllers / Mixamo](#Animator-Controller)
-7. [Cinemachine](#Cinemachine)
-7. [Class Assignment - Week #05](#Create-with-Code)  
+2. [Unity Editor AI Tools](#Unity-AI-Tools)  
+3. [Midterm Assignment](#Midterm-Assignment)  
+4. [Design Process : Wireframes, Flow Diagrams & Storyboards](#Design-Process)  
 
 ---
 Week 5 - Multiplayer Photon - AI Tools - Midterm Assignment - Desktop or Mobile Prototype of Gamified Learning -  Documents / Storyboards / Wireframe / Flow Diagram
