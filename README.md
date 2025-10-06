@@ -526,15 +526,6 @@ The goal of this assignment is to apply **user experience design principles** an
 
 You will design and present a prototype for an **interactive learning application** (desktop, web, or mobile). The application must teach users a specific skill or subject area (e.g., math drills, language learning, history exploration, science simulations, coding tutorials).
 
-To enhance engagement, your app must include **at least three gamified features**, such as:
-
-* Points, badges, or leaderboards
-* Levels or progression systems
-* Timed challenges or quizzes
-* Unlockable achievements or rewards
-* Story-driven or narrative-based learning
-* Avatar customization or virtual economy
-
 Your design should focus on **how Game Based Learning (GBL) motivates learners** and enhances the educational experience.
 
 ---
@@ -553,12 +544,7 @@ Your design should focus on **how Game Based Learning (GBL) motivates learners**
    * **Wireframes** – layout of key screens.
    * **Storyboard** – demonstrate a typical user’s learning journey.
 
-3. **Gamification Strategy (1–2 pages)**
-
-   * Identify at least **3 gamification elements**.
-   * Explain how each element supports **motivation** and **learning outcomes**.
-
-4. **Prototype (Unity Application)**
+3. **Prototype (Unity Application)**
 
    * Setup a low-fidelity Unity functional prototype
    
