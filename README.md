@@ -512,237 +512,9 @@ The Interactive Guide to Cross-Platform UI is a set of guided, in-editor tutoria
 # Touch Input System
 - https://discussions.unity.com/t/get-up-and-running-with-the-input-system/1620267
 
---- 
-
-
 ---
 
-# 🎬 Unity Animation System & Mixamo Integration
-
-Animating characters brings your Unity projects to life.  
-This guide covers **Unity’s Animation System** and provides a **hands-on workflow to import Mixamo animations**.
-
----
-
-## 📌 What is the Unity Animation System?
-
-The **Unity Animation System** allows you to animate characters and objects using:
-
-- **Keyframe Animation**: Manual animation inside Unity.
-- **Imported Animations**: From tools like Mixamo, Blender, or Maya.
-- **Animator Controller**: A state machine that manages multiple animations and transitions.
-
-### Key Concepts
-
-| Concept | Description |
-|---------|-------------|
-| **Animator Component** | Attaches to a GameObject to control animations. |
-| **Animation Clip** | A single animation sequence (e.g., walk, run, jump). |
-| **Animator Controller** | Organizes animation clips in states and transitions. |
-| **Blend Trees** | Smoothly blend between multiple animations based on parameters. |
-| **Root Motion** | Moves the GameObject in world space according to the animation. |
-
----
-
-## ⚙️ Unity Animator Setup
-
-1. **Add Animator Component**
-   - Select your character in the **Hierarchy**.
-   - Click **Add Component → Animator**.
-   - Create or assign an **Animator Controller**.
-
-2. **Open Animator Controller**
-   - Double-click the Animator Controller in **Project Window**.
-   - Add states by dragging animation clips into the Animator.
-   - Define **transitions** between states based on conditions like speed or triggers.
-
----
-
-## 🌐 Using Mixamo Animations in Unity
-
-**Mixamo** provides free rigged characters and pre-made animations. Follow these steps to integrate Mixamo animations into Unity.
-
-### Step 1: Choose or Upload Character
-1. Go to [Mixamo.com](https://www.mixamo.com/).
-2. Select a character from the library or upload your own rigged character.
-
-### Step 2: Pick Animations
-1. Search for the desired animation (walk, run, jump, attack, etc.).
-2. Click the animation to preview it in the Mixamo viewer.
-
-### Step 3: Download Animation
-1. Click **Download**.
-2. Choose **FBX for Unity**.
-3. Set **Pose → T-Pose**.
-4. Choose **With Skin** (for full character) or **Without Skin** (if adding only animation).
-
-### Step 4: Import into Unity
-1. Drag the downloaded FBX into **Assets** in Unity.
-2. Select the FBX file, go to **Rig** tab, and set:
-   - **Animation Type → Humanoid**
-   - Click **Apply**.
-3. Unity automatically generates **Animation Clips** from the FBX.
-
-### Step 5: Configure Animator Controller
-1. Open your **Animator Controller**.
-2. Drag the imported Animation Clips into the Animator window.
-3. Create **transitions** between animations.
-   - Example: Idle → Walk → Run
-4. Add **parameters**:
-   - Float: `Speed` for movement
-   - Trigger: `Jump` for jump animation
-
-### Step 6: Enable Root Motion (Optional)
-- If the animation moves the character in world space (e.g., walking forward), check **Apply Root Motion** in the Animator.
-
----
-
-## 🛠️ Controlling Animations via Script
-
-```csharp
-using UnityEngine;
-
-public class CharacterController : MonoBehaviour
-{
-    public Animator animator;
-
-    void Update()
-    {
-        float move = Input.GetAxis("Vertical");
-        animator.SetFloat("Speed", move);
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            animator.SetTrigger("Jump");
-        }
-    }
-}
-```
-
----
-
-## 📌 Getting Started: Animator Controller
-https://learn.unity.com/course/introduction-to-3d-animation-systems/unit/the-animator
-
----
-
-# Unity Editor AI Tools 🤖✨
-
-AI is rapidly transforming the way we create games, and Unity Editor AI tools are here to **accelerate prototyping, automate repetitive tasks, and enhance creativity**.
-
----
-
-## 📌 What Are Unity Editor AI Tools?
-Unity Editor AI tools integrate artificial intelligence into the Unity Editor to help developers:
-- 🖌 **Generate assets** (textures, sprites, 3D models).
-- 🛠 **Automate code snippets** (C# scripting with AI assistance).
-- 🎨 **Assist level design** (AI terrain sculpting, scene layout).
-- ⚡ **Accelerate iteration** (dialogue generation, testing bots).
-- 🧪 **Prototype gameplay ideas** faster.
-
-Some AI tools are **Unity Official** (like Unity Muse), while others come from **community packages** or **third-party services**.
-
----
-
-## 🛠 Requirements
-- Unity **2021 LTS or newer** (AI tools often target newer LTS versions).
-- A Unity account with access to [Unity Muse](https://unity.com/products/muse) or AI-integrated packages.
-- Internet connection (many AI tools call external APIs).
-
----
-
-## 📥 Installation
-
-### Option 1: Unity Muse (Official)
-1. Open **Unity Hub → Projects**.
-2. Install the **Muse package** from the **Package Manager**.
-3. Log in with your Unity account (Muse requires subscription access).
-4. Access Muse panels from:  
-   `Window → Muse → Chat / Sprite / Texture`
-
-### Option 2: Third-Party AI Packages
-- Import via **Unity Package Manager → Add package from Git URL**.  
-  Example:  
-  ```text
-  https://github.com/<org>/<unity-ai-package>.git
-````
-
-* Or download `.unitypackage` releases from GitHub and import manually.
-
----
-
-## 🚀 Quick Start Tutorial
-
-### AI Code Generation with Muse Chat
-
-Muse Chat is like **ChatGPT inside Unity**.
-
-* Open: `Window → Muse → Chat`.
-* Ask questions like:
-
-  ```
-  Generate a C# script to move a character with WASD input.
-  ```
-* Muse suggests a script, which you can **Insert** directly into your project.
-
----
-
-### AI Asset Generation
-
-Muse and other tools can generate **sprites, textures, and materials** directly.
-
-Example workflow:
-
-1. Open: `Window → Muse → Sprite`.
-2. Type a prompt:
-
-   ```
-   "Pixel art potion bottle, glowing blue"
-   ```
-3. Click **Generate** → Muse creates sprite variations.
-4. Drag into **Scene Hierarchy** as a prefab.
-
----
-
-## 🧩 Example Workflow: AI-Assisted Game Jam
-
-1. Use **Muse Chat** to scaffold movement + camera scripts.
-2. Generate placeholder sprites with **Muse Sprite**.
-3. Use AI Terrain for **fast prototyping** of landscapes.
-4. Auto-generate **dialogue trees** for NPCs.
-5. Polish later with custom art/code.
-
-⏱ Result: Build a playable prototype in hours instead of days.
-
----
-
-## ⚡ Advanced Use Cases
-
-* **AI Playtesting** → simulate player behavior with agent-based AI testers.
-* **Procedural AI Generation** → create infinite variations of levels/assets.
-* **Localization** → AI-assisted translation of dialogue/UI.
-* **Shader Suggestions** → AI-generated Shader Graph snippets.
-
----
-
-## 📚 Learning Resources
-
-* [Unity Muse Documentation](https://docs.unity3d.com/muse)
-* [Unity Blog: AI Tools](https://blog.unity.com/tag/ai)
-* [Unity AI Roadmap](https://unity.com/ai)
-
----
-
-## ✅ Best Practices
-
-* Treat AI outputs as **starting points**, not finished products.
-* Keep **version control** active (AI changes can be large).
-* Use AI for **rapid iteration**, but refine manually for performance/quality.
-* Test generated code for **performance + security**.
-
----
-
-# 📘 Midterm Assignment: Design an Gamified Learning Application
+# 📘 Midterm Assignment: Design an Game Based Learning Application
 
 ## 🎯 Objective
 
@@ -763,7 +535,7 @@ To enhance engagement, your app must include **at least three gamified features*
 * Story-driven or narrative-based learning
 * Avatar customization or virtual economy
 
-Your design should focus on **how gamification motivates learners** and enhances the educational experience.
+Your design should focus on **how Game Based Learning (GBL) motivates learners** and enhances the educational experience.
 
 ---
 
@@ -827,8 +599,6 @@ A structured design process helps to:
 - Identify **core use cases** (e.g., file management, data visualization, task automation).  
 - Define technical constraints (OS compatibility, frameworks, APIs).  
 
-📚 Reference: [Nielsen Norman Group – User Research Basics](https://www.nngroup.com/articles/which-ux-research-methods/)
-
 ---
 
 ### 2. User Flow Diagrams
@@ -858,8 +628,6 @@ They show **screen structure, menus, buttons, navigation flow**.
 - [Balsamiq](https://balsamiq.com/)  
 - [Adobe XD](https://www.adobe.com/products/xd.html)  
 
-📚 Reference: [Wireframing Basics – Interaction Design Foundation](https://www.interaction-design.org/literature/topics/wireframing)
-
 ---
 
 ### 4. Storyboarding
@@ -872,8 +640,6 @@ They help visualize **real-world usage scenarios**.
 📌 Tools:  
 - [Storyboard That](https://www.storyboardthat.com/)  
 - [Canva Storyboards](https://www.canva.com/storyboards/)  
-
-📚 Reference: [UX Storyboarding – Nielsen Norman Group](https://www.nngroup.com/articles/storyboards-ux/)
 
 ---
 
@@ -904,19 +670,4 @@ After wireframes and storyboards, build an **interactive prototype**.
 * Ensure **consistency** across screens.
 * Focus on **accessibility** (font sizes, contrast, keyboard navigation).
 
-📚 Reference: [Microsoft UX Guidelines](https://learn.microsoft.com/en-us/windows/apps/design/)
-
 ---
-
-## ✅ Summary
-
-By using:
-
-* **Flow diagrams** → Define user journeys
-* **Wireframes** → Visualize screen layouts
-* **Storyboards** → Capture real-world scenarios
-
-… you create a clear design blueprint for a desktop app, reducing errors and improving usability.
-
----
-
