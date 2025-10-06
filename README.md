@@ -5,12 +5,11 @@
 1. [Features-Review](#Unity-Features)  
 2. [Lighting System](#Unity-Lighting)  
 3. [Tweening with DOTween](#DO-Tween)  
-4. [Animator Controllers / Mixamo](#Animator-Controller) 
+4. [Unity Remote](#Unity-Remote)  
 5. [Unity Mobile App Build](#Unity-Mobile-App-Build-Process)  
-6. [Unity Remote](#Unity-Remote)  
-7. [Cross-Platform UI](#Cross-Platform-UI)
-8. [Midterm Assignment](#Midterm-Assignment)  
-9. [Design Process : Wireframes, Flow Diagrams & Storyboards](#Design-Process)  
+6. [Cross-Platform UI](#Cross-Platform-UI)
+7. [Midterm Assignment](#Midterm-Assignment)  
+8. [Design Process : Wireframes, Flow Diagrams & Storyboards](#Design-Process)  
 
 ---
 
@@ -284,7 +283,111 @@ public class DoTweenButton : MonoBehaviour
 * [DOTween Official Documentation](http://dotween.demigiant.com/documentation.php)
 * [DOTween Pro](http://dotween.demigiant.com/pro.php) – extended features for UI and visual tools
 
+---
 
+# 📱 Unity Remote 
+
+**Unity Remote** is a tool that allows you to **test and play your Unity project on a mobile device in real-time** without building the full application.  
+This guide explains Unity Remote and provides a step-by-step tutorial for setup and use.
+
+Unity Remote lets you:
+
+- Stream your **Game View** from the Unity Editor to a mobile device.
+- Test **touch input, accelerometer, and device sensors** without building the full APK or iOS app.
+- Rapidly iterate on mobile UI and controls during development.
+
+> Note: Unity Remote is for **testing only**; final performance may differ on actual builds.
+
+---
+
+## ⚙️ Prerequisites
+
+### Common Requirements
+
+- Unity installed.
+- Mobile device (Android or iOS).
+- USB cable for device connection.
+- Unity Remote app installed on the device:
+  - **Android**: [Unity Remote 5 on Google Play](https://play.google.com/store/apps/details?id=com.unity3d.unityremote5)
+  - **iOS**: [Unity Remote 5 on App Store](https://apps.apple.com/us/app/unity-remote-5/id1089798891)
+
+---
+
+## 🔧 Setting Up Unity Remote
+
+### Step 1: Connect Your Device
+
+1. Plug your mobile device into your computer via USB.
+2. Enable **Developer Mode / USB Debugging**:
+   - Android: Enable **Developer Options → USB Debugging**.
+   - iOS: Enable **Developer Mode** in Settings.
+
+---
+
+### Step 2: Configure Unity Editor
+
+1. Open **Edit → Project Settings → Editor**.
+2. Under **Unity Remote**, set:
+   - **Device**: `Any Android Device` or `Any iOS Device`
+   - **Compression Method**: `JPEG` or `PNG`
+   - **Resolution**: `Original` or `Scaled`
+3. Open **File → Build Settings → Platform**:
+   - Ensure your platform matches your device (Android or iOS).
+
+---
+
+### Step 3: Launch Unity Remote
+
+1. Open the **Unity Remote app** on your device.
+2. Click **Play** in the Unity Editor.
+3. The Game View will stream directly to your mobile device.
+4. Interact with the game using **touch, tilt, or other mobile inputs**.
+
+---
+
+## 🛠️ Testing Controls and Input
+
+- **Touch Input**: Unity Remote sends touch positions from device to Editor.
+- **Accelerometer**: Device tilt affects `Input.acceleration` in Unity.
+- **Gyroscope**: Device rotation affects `Input.gyro` data.
+
+**Example Script for Touch Input:**
+
+```csharp
+using UnityEngine;
+
+public class TouchExample : MonoBehaviour
+{
+    void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(touch.position);
+            Debug.Log("Touch position: " + worldPos);
+        }
+    }
+}
+````
+
+Attach this to a GameObject and see touch positions logged while using Unity Remote.
+
+---
+
+## 🚀 Tips
+
+* Use **Unity Remote** early in development to quickly iterate on mobile UI and gameplay.
+* Remember **performance will differ** from actual builds; use Unity Remote for input and layout testing only.
+* Disable **Unity Remote** for final testing on actual device builds to check performance, resolution, and frame rate.
+
+---
+
+## 📚 Further Learning
+
+* [Unity Manual: Unity Remote](https://docs.unity3d.com/Manual/UnityRemote5.html)
+* [Unity Learn: Mobile Development](https://learn.unity.com/tutorial/mobile-game-development)
+
+---
 # 📱 Unity Mobile App Build Process
 
 This guide covers **how to build and publish Unity applications** for **Android** and **iOS** platforms.  
@@ -389,110 +492,6 @@ Official Unity docs: [iOS Build Process](https://docs.unity3d.com/6000.2/Documen
 
 - [Unity Manual: Android Build](https://docs.unity3d.com/6000.2/Documentation/Manual/android-BuildProcess.html)  
 - [Unity Manual: iOS Build](https://docs.unity3d.com/6000.2/Documentation/Manual/iphone-BuildProcess.html)  
-
----
-
-# 📱 Unity Remote 
-
-**Unity Remote** is a tool that allows you to **test and play your Unity project on a mobile device in real-time** without building the full application.  
-This guide explains Unity Remote and provides a step-by-step tutorial for setup and use.
-
-Unity Remote lets you:
-
-- Stream your **Game View** from the Unity Editor to a mobile device.
-- Test **touch input, accelerometer, and device sensors** without building the full APK or iOS app.
-- Rapidly iterate on mobile UI and controls during development.
-
-> Note: Unity Remote is for **testing only**; final performance may differ on actual builds.
-
----
-
-## ⚙️ Prerequisites
-
-### Common Requirements
-
-- Unity installed.
-- Mobile device (Android or iOS).
-- USB cable for device connection.
-- Unity Remote app installed on the device:
-  - **Android**: [Unity Remote 5 on Google Play](https://play.google.com/store/apps/details?id=com.unity3d.unityremote5)
-  - **iOS**: [Unity Remote 5 on App Store](https://apps.apple.com/us/app/unity-remote-5/id1089798891)
-
----
-
-## 🔧 Setting Up Unity Remote
-
-### Step 1: Connect Your Device
-
-1. Plug your mobile device into your computer via USB.
-2. Enable **Developer Mode / USB Debugging**:
-   - Android: Enable **Developer Options → USB Debugging**.
-   - iOS: Enable **Developer Mode** in Settings.
-
----
-
-### Step 2: Configure Unity Editor
-
-1. Open **Edit → Project Settings → Editor**.
-2. Under **Unity Remote**, set:
-   - **Device**: `Any Android Device` or `Any iOS Device`
-   - **Compression Method**: `JPEG` or `PNG`
-   - **Resolution**: `Original` or `Scaled`
-3. Open **File → Build Settings → Platform**:
-   - Ensure your platform matches your device (Android or iOS).
-
----
-
-### Step 3: Launch Unity Remote
-
-1. Open the **Unity Remote app** on your device.
-2. Click **Play** in the Unity Editor.
-3. The Game View will stream directly to your mobile device.
-4. Interact with the game using **touch, tilt, or other mobile inputs**.
-
----
-
-## 🛠️ Testing Controls and Input
-
-- **Touch Input**: Unity Remote sends touch positions from device to Editor.
-- **Accelerometer**: Device tilt affects `Input.acceleration` in Unity.
-- **Gyroscope**: Device rotation affects `Input.gyro` data.
-
-**Example Script for Touch Input:**
-
-```csharp
-using UnityEngine;
-
-public class TouchExample : MonoBehaviour
-{
-    void Update()
-    {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(touch.position);
-            Debug.Log("Touch position: " + worldPos);
-        }
-    }
-}
-````
-
-Attach this to a GameObject and see touch positions logged while using Unity Remote.
-
----
-
-## 🚀 Tips
-
-* Use **Unity Remote** early in development to quickly iterate on mobile UI and gameplay.
-* Remember **performance will differ** from actual builds; use Unity Remote for input and layout testing only.
-* Disable **Unity Remote** for final testing on actual device builds to check performance, resolution, and frame rate.
-
----
-
-## 📚 Further Learning
-
-* [Unity Manual: Unity Remote](https://docs.unity3d.com/Manual/UnityRemote5.html)
-* [Unity Learn: Mobile Development](https://learn.unity.com/tutorial/mobile-game-development)
 
 ---
 
