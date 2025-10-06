@@ -2,220 +2,627 @@
 
 ## Agenda
 
-1. [Multiplayer with Photon Fusion](#Multiplayer-Photon-Fusion)  
-2. [Unity Editor AI Tools](#Unity-AI-Tools)  
-3. [Midterm Assignment](#Midterm-Assignment)  
-4. [Design Process : Wireframes, Flow Diagrams & Storyboards](#Design-Process)  
-
----
-Week 5 - Multiplayer Photon - AI Tools - Midterm Assignment - Desktop or Mobile Prototype of Gamified Learning -  Documents / Storyboards / Wireframe / Flow Diagram
-
----
-
-# 🚀 Unity Multiplayer with Photon Fusion 
-
-Photon Fusion is a high-performance networking SDK for Unity that makes it easier to build scalable, low-latency multiplayer games. This guide will walk you through the fundamentals of setting up Photon Fusion, connecting players, and synchronizing gameplay.
+1. [Features-Review](#Unity-Features)  
+2. [Lighting System](#Unity-Lighting)  
+3. [Tweening with DOTween](#DO-Tween)  
+4. [Animator Controllers / Mixamo](#Animator-Controller) 
+5. [Unity Mobile App Build](#Unity-Mobile-App-Build-Process)  
+6. [Unity Remote](#Unity-Remote)  
+7. [Cross-Platform UI](#Cross-Platform-UI)
+8. [Midterm Assignment](#Midterm-Assignment)  
+9. [Design Process : Wireframes, Flow Diagrams & Storyboards](#Design-Process)  
 
 ---
 
-## 📌 What is Photon Fusion?
-Photon Fusion is the next generation of Photon’s networking solutions for Unity, designed to replace **PUN** and **Bolt** with:
-- 🔥 **High performance**: Supports 6,000+ CCU on a single server.
-- 🕹 **Multiple topologies**: Client-Hosted, Shared, and Dedicated Server.
-- 🎮 **Tick-based simulation**: Handles state replication and prediction with minimal effort.
-- ⚡ **Lag compensation**: Hit detection and inputs are auto-reconciled.
+# 🌟 Unity Lighting
+
+Lighting is one of the most powerful tools in Unity for creating mood, realism, and atmosphere in your games. It not only affects how objects look but also impacts performance and player immersion.
 
 ---
 
-## 🛠 Requirements
-- Unity **2021 LTS or newer** (Fusion works best on latest LTS versions).
-- [Photon Fusion SDK](https://doc.photonengine.com/fusion/current/getting-started/installation).
-- Photon [Dashboard Account](https://dashboard.photonengine.com/).
+## 🔦 What is Lighting in Unity?
+
+In Unity, **lighting** determines how objects in a scene are illuminated and perceived by the camera. Lighting can simulate sunlight, lamps, glowing effects, or even abstract moods.
+
+Unity’s Lighting system consists of three main parts:
+
+1. **Light Components** (Directional, Point, Spot, Area)
+2. **Global Illumination (GI)** (real-time or baked light bounces)
+3. **Environment Lighting** (skybox, ambient light, reflection probes)
 
 ---
 
-## 📥 Installation
+## 💡 Types of Light Components
 
-1. **Download Photon Fusion SDK**
-   - Get it from the [Photon website](https://doc.photonengine.com/fusion/current/getting-started/installation) or via Unity’s **Package Manager**.
+Unity provides several built-in light types, each useful for different scenarios:
 
-2. **Import into Unity**
-   - Drag the `.unitypackage` into your project or add via Git URL in Package Manager.
-
-3. **Set Up App ID**
-   - Register a new **Fusion App** in the [Photon Dashboard](https://dashboard.photonengine.com/).
-   - Copy the **App ID** and paste it into:  
-     `Fusion → Setup Wizard → Enter App ID`
+| Light Type                  | Use Case                                   | Icon | Notes                                              |
+| --------------------------- | ------------------------------------------ | ---- | -------------------------------------------------- |
+| **Directional Light**       | Simulates sunlight or moonlight            | ☀️   | Parallel rays; great for outdoor scenes.           |
+| **Point Light**             | Emits light in all directions from a point | 💡   | Ideal for lamps, torches, glowing objects.         |
+| **Spot Light**              | Cone-shaped light, like a flashlight       | 🔦   | Perfect for focused effects like stage lights.     |
+| **Area Light** (Baked only) | Rectangular light source                   | 📐   | Great for soft indoor lighting, windows, or lamps. |
 
 ---
 
-## 🚀 Quick Start Tutorial
+## ⚙️ Key Light Component Properties
 
-### 1. Create a Fusion Runner
-The **Runner** manages networking, session creation, and game logic.
+When you select a Light in Unity, you’ll see these common settings in the **Inspector**:
+
+* **Type** → Directional, Point, Spot, Area
+* **Color** → Tint of the light (warm, cool, dramatic tones)
+* **Intensity** → Brightness of the light
+* **Range** (Point/Spot only) → Distance the light reaches
+* **Spot Angle** (Spot only) → Width of the cone
+* **Shadows** → Enable and adjust **Hard** or **Soft Shadows**
+* **Mode** →
+
+* **Realtime** – Updates every frame, dynamic but costly
+* **Baked** – Precomputed, static, performance-friendly
+* **Mixed** – Combines real-time and baked
+
+---
+
+## 🌍 Global Illumination (GI)
+
+Lighting doesn’t stop at direct rays — **GI** simulates how light bounces around the scene.
+
+* **Realtime GI** → Updates dynamically (good for day/night cycles).
+* **Baked GI** → Precomputed for static environments (faster runtime performance).
+
+Unity’s **Lighting Window** (`Window > Rendering > Lighting`) lets you configure GI, skyboxes, ambient light, and reflection probes.
+
+---
+
+## 🖼️ Environment Lighting
+
+* **Skybox** → Wraps the scene with a 360° texture (day, night, fantasy worlds).
+* **Ambient Light** → Adds soft light to areas not hit by direct lights.
+* **Reflection Probes** → Capture reflections for shiny surfaces.
+
+---
+
+## 📌 Creative Core: Lighting Tutorial
+https://learn.unity.com/tutorial/get-started-with-lighting?version=6.0
+
+---
+
+## 📌 Live Session Video: Lighting
+** This session explores different types of light and their specific use cases.**
+You will learn about:
+- color temperature, intensity and exposure
+- the relationship between light and shadow and how these direct the viewer’s eye
+- use volumetric light to add polish by creating “god rays,”
+- how to output final shots via the recorder
+
+- https://learn.unity.com/tutorial/lighting-july-28-2021
+
+---
+
+# 🎬 Unity DOTween
+
+Tweening (short for *in-betweening*) lets you smoothly animate values over time, such as movement, rotation, scale, UI transitions, or color changes.
+
+**[DOTween](http://dotween.demigiant.com/)** is a fast, efficient, full-featured tweening engine for Unity. It’s widely used in professional projects because of its flexibility and performance.
+
+---
+
+## 🚀 What is DOTween?
+
+DOTween provides:
+
+* ✨ **Powerful animations** for any value, not just transforms.
+* 🔗 **Sequences** – chain multiple tweens in order.
+* 🎛️ **Ease of use** – simple one-liners to animate properties.
+* ⚡ **High performance** – optimized for mobile and consoles.
+* 🛠️ **Extensibility** – works with custom variables, UI, shaders, and more.
+
+---
+
+## 📦 Installation
+
+### Option 1: Unity Asset Store
+
+1. Open **Unity Asset Store** inside the Unity Editor.
+2. Search for **DOTween** and install the free version (or Pro for extra features).
+
+### Option 2: Package from Website
+
+1. Download DOTween from [dotween.demigiant.com](http://dotween.demigiant.com/).
+2. Import the `.unitypackage` into your Unity project.
+3. Run **DOTween Utility Panel** via `Tools > Demigiant > DOTween Utility Panel` to set up.
+
+---
+
+## 💡 Basic Usage
+
+Here’s how to move a GameObject smoothly across the screen:
 
 ```csharp
-using Fusion;
-using Fusion.Sockets;
-using System;
 using UnityEngine;
+using DG.Tweening; // DOTween namespace
 
-public class GameLauncher : MonoBehaviour
+public class DoTweenExample : MonoBehaviour
 {
-    private NetworkRunner runner;
-
-    async void Start()
+    void Start()
     {
-        runner = gameObject.AddComponent<NetworkRunner>();
-        runner.ProvideInput = true;
+        // Move the object to position (5, 2, 0) over 2 seconds
+        transform.DOMove(new Vector3(5f, 2f, 0f), 2f);
+    }
+}
+```
 
-        await runner.StartGame(new StartGameArgs()
+---
+
+## 🛠️ DOTween API Overview
+
+### 1. Move Object
+
+```csharp
+transform.DOMove(Vector3 targetPosition, float duration);
+```
+
+Moves a GameObject to the target position.
+
+---
+
+### 2. Rotate Object
+
+```csharp
+transform.DORotate(new Vector3(0, 180, 0), 2f);
+```
+
+Rotates a GameObject smoothly.
+
+---
+
+### 3. Scale Object
+
+```csharp
+transform.DOScale(Vector3.one * 2f, 1f);
+```
+
+Doubles the size of the object in 1 second.
+
+---
+
+### 4. Color Tween
+
+```csharp
+spriteRenderer.DOColor(Color.red, 1.5f);
+```
+
+Tweens a sprite’s color over 1.5 seconds.
+
+---
+
+### 5. UI Tweening
+
+```csharp
+myText.DOFade(0f, 2f);  // fade out text
+myImage.DOFillAmount(1f, 3f); // fill radial image
+```
+
+---
+
+### 6. Sequences
+
+Chain multiple animations together:
+
+```csharp
+Sequence mySequence = DOTween.Sequence();
+mySequence.Append(transform.DOMoveX(3, 1f))
+          .Append(transform.DOScale(Vector3.one * 2, 0.5f))
+          .Append(transform.DORotate(new Vector3(0, 180, 0), 1f))
+          .OnComplete(() => Debug.Log("Sequence Finished!"));
+```
+
+---
+
+### 7. Looping
+
+```csharp
+transform.DOMoveY(3f, 1f).SetLoops(-1, LoopType.Yoyo);
+```
+
+Makes the object bounce up and down forever.
+
+---
+
+### 8. Callbacks
+
+```csharp
+transform.DOMoveX(5, 2f).OnComplete(() => Debug.Log("Done!"));
+```
+
+---
+
+## 🎮 Tutorial: Bouncy UI Button
+
+Let’s animate a UI button to “bounce” when clicked:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+
+public class DoTweenButton : MonoBehaviour
+{
+    public Button myButton;
+
+    void Start()
+    {
+        myButton.onClick.AddListener(() =>
         {
-            GameMode = GameMode.AutoHostOrClient,
-            SessionName = "TestRoom",
-            Scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex,
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+            myButton.transform.DOScale(Vector3.one * 1.2f, 0.2f)
+                .SetEase(Ease.OutBack)
+                .OnComplete(() =>
+                {
+                    myButton.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.InBack);
+                });
         });
     }
 }
 ```
 
-✅ This script will **auto-host** a session if no one is connected, or **join** an existing session.
+✅ Result: The button pops when clicked with a smooth easing curve.
 
 ---
 
-### 2. Create a Networked Player
+## 📸 Example Scenarios
 
-1. Create a simple **Player Prefab** (Cube/Sphere).
-2. Add a **`NetworkObject`** component to it.
-3. Create a **PlayerSpawner** script:
+* Smooth **camera transitions**
+* UI elements sliding in/out
+* Looping **background animations**
+* Complex cutscene animations using **Sequences**
+* Sprite flashing or color transitions
+
+---
+
+## 📚 Resources
+
+* [DOTween Official Documentation](http://dotween.demigiant.com/documentation.php)
+* [DOTween Pro](http://dotween.demigiant.com/pro.php) – extended features for UI and visual tools
+
+
+# 📱 Unity Mobile App Build Process
+
+This guide covers **how to build and publish Unity applications** for **Android** and **iOS** platforms.  
+
+---
+
+## 📌 Prerequisites
+
+### Common Requirements
+- Unity installed with **Android Build Support** and/or **iOS Build Support**.
+- **Scripting Backend**: IL2CPP recommended.
+- **Player Settings** configured (bundle ID, version, orientation, icons).
+- Device for testing (Android phone/tablet or iPhone/iPad).
+
+### Tools
+- **Android**:
+  - Android Studio (for SDK & NDK)
+  - Java JDK (usually comes with Android Studio)
+- **iOS**:
+  - Xcode installed on macOS
+
+---
+
+## ⚙️ Configuring Player Settings
+
+1. Open **File → Build Settings → Player Settings**.
+2. Configure the following:
+
+| Setting | Android | iOS |
+|---------|---------|-----|
+| **Company & Product Name** | ✅ | ✅ |
+| **Package/Bundle Identifier** | `com.yourcompany.app` | `com.yourcompany.app` |
+| **Version & Build Number** | ✅ | ✅ |
+| **Orientation** | Portrait / Landscape | Portrait / Landscape |
+| **Icon & Splash Screen** | ✅ | ✅ |
+| **Minimum OS Version** | API level 19+ (Android) | iOS 11+ |
+
+---
+
+## 📦 Android Build Process
+
+1. Open **File → Build Settings → Android** → Switch Platform.
+2. Connect **Android device** (optional) or build APK/ABB.
+3. Configure **Build Settings**:
+   - Target: **Google Android**
+   - Texture Compression: **ASTC recommended**
+   - Build System: **Gradle**
+4. Click **Build** or **Build and Run**.
+5. Locate APK/AAB file in chosen directory.
+6. Test the build on a real device.
+
+**Publishing to Google Play:**
+1. Sign APK/AAB using a keystore.
+2. Upload the signed APK/AAB to [Google Play Console](https://play.google.com/console).
+3. Fill store listing, screenshots, and submit for review.
+
+Official Unity docs: [Android Build Process](https://docs.unity3d.com/6000.2/Documentation/Manual/android-BuildProcess.html)
+
+---
+
+## 📦 Google Play Setup
+- https://developer.android.com/games/pgs/unity/unity-start
+
+---
+
+## 🍎 iOS Build Process
+
+1. Open **File → Build Settings → iOS** → Switch Platform.
+2. Click **Build** → choose a folder → Unity generates an **Xcode project**.
+3. Open the generated project in **Xcode**.
+4. Configure in Xcode:
+   - **Signing & Capabilities** → select team and provisioning profile.
+   - **Bundle Identifier** matches Player Settings in Unity.
+   - Target device and deployment target.
+5. Build and run on device or simulator.
+
+**Publishing to App Store:**
+1. Archive the app in Xcode (`Product → Archive`).
+2. Upload to App Store Connect.
+3. Fill app metadata, screenshots, and submit for review.
+
+Official Unity docs: [iOS Build Process](https://docs.unity3d.com/6000.2/Documentation/Manual/iphone-BuildProcess.html)
+
+---
+
+## 🍎 IOS Build Tutorial
+- https://learn.unity.com/tutorial/publishing-for-ios
+
+---
+
+## 🛠️ Build Tips
+
+- Use **IL2CPP** for better performance and app store compliance.
+- Enable **Development Build** for testing with logs.
+- Test frequently on real devices to check performance and resolution.
+- Optimize textures, audio, and assets for mobile performance.
+- Keep Android min SDK and iOS deployment target consistent with your target devices.
+
+---
+
+## 📚 Further Learning
+
+- [Unity Manual: Android Build](https://docs.unity3d.com/6000.2/Documentation/Manual/android-BuildProcess.html)  
+- [Unity Manual: iOS Build](https://docs.unity3d.com/6000.2/Documentation/Manual/iphone-BuildProcess.html)  
+
+---
+
+# 📱 Unity Remote 
+
+**Unity Remote** is a tool that allows you to **test and play your Unity project on a mobile device in real-time** without building the full application.  
+This guide explains Unity Remote and provides a step-by-step tutorial for setup and use.
+
+Unity Remote lets you:
+
+- Stream your **Game View** from the Unity Editor to a mobile device.
+- Test **touch input, accelerometer, and device sensors** without building the full APK or iOS app.
+- Rapidly iterate on mobile UI and controls during development.
+
+> Note: Unity Remote is for **testing only**; final performance may differ on actual builds.
+
+---
+
+## ⚙️ Prerequisites
+
+### Common Requirements
+
+- Unity installed.
+- Mobile device (Android or iOS).
+- USB cable for device connection.
+- Unity Remote app installed on the device:
+  - **Android**: [Unity Remote 5 on Google Play](https://play.google.com/store/apps/details?id=com.unity3d.unityremote5)
+  - **iOS**: [Unity Remote 5 on App Store](https://apps.apple.com/us/app/unity-remote-5/id1089798891)
+
+---
+
+## 🔧 Setting Up Unity Remote
+
+### Step 1: Connect Your Device
+
+1. Plug your mobile device into your computer via USB.
+2. Enable **Developer Mode / USB Debugging**:
+   - Android: Enable **Developer Options → USB Debugging**.
+   - iOS: Enable **Developer Mode** in Settings.
+
+---
+
+### Step 2: Configure Unity Editor
+
+1. Open **Edit → Project Settings → Editor**.
+2. Under **Unity Remote**, set:
+   - **Device**: `Any Android Device` or `Any iOS Device`
+   - **Compression Method**: `JPEG` or `PNG`
+   - **Resolution**: `Original` or `Scaled`
+3. Open **File → Build Settings → Platform**:
+   - Ensure your platform matches your device (Android or iOS).
+
+---
+
+### Step 3: Launch Unity Remote
+
+1. Open the **Unity Remote app** on your device.
+2. Click **Play** in the Unity Editor.
+3. The Game View will stream directly to your mobile device.
+4. Interact with the game using **touch, tilt, or other mobile inputs**.
+
+---
+
+## 🛠️ Testing Controls and Input
+
+- **Touch Input**: Unity Remote sends touch positions from device to Editor.
+- **Accelerometer**: Device tilt affects `Input.acceleration` in Unity.
+- **Gyroscope**: Device rotation affects `Input.gyro` data.
+
+**Example Script for Touch Input:**
 
 ```csharp
-using Fusion;
 using UnityEngine;
 
-public class PlayerSpawner : NetworkBehaviour
+public class TouchExample : MonoBehaviour
 {
-    public GameObject playerPrefab;
-
-    public override void Spawned()
+    void Update()
     {
-        if (Object.HasInputAuthority)
+        if (Input.touchCount > 0)
         {
-            Runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, Object.InputAuthority);
+            Touch touch = Input.GetTouch(0);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(touch.position);
+            Debug.Log("Touch position: " + worldPos);
+        }
+    }
+}
+````
+
+Attach this to a GameObject and see touch positions logged while using Unity Remote.
+
+---
+
+## 🚀 Tips
+
+* Use **Unity Remote** early in development to quickly iterate on mobile UI and gameplay.
+* Remember **performance will differ** from actual builds; use Unity Remote for input and layout testing only.
+* Disable **Unity Remote** for final testing on actual device builds to check performance, resolution, and frame rate.
+
+---
+
+## 📚 Further Learning
+
+* [Unity Manual: Unity Remote](https://docs.unity3d.com/Manual/UnityRemote5.html)
+* [Unity Learn: Mobile Development](https://learn.unity.com/tutorial/mobile-game-development)
+
+---
+
+## Mobile Development Tutorial
+
+This endless runner game example (Trash Dash) is optimised for mobile, it shows the use of object pooling, origin reset, asset bundles, additive scene loading and a curved world shader.
+- [Endless Runner Sample Game](https://learn.unity.com/tutorial/mobile-development-techniques)
+
+---
+
+# Interactive Guide: Cross-Platform UI
+The Interactive Guide to Cross-Platform UI is a set of guided, in-editor tutorials for experienced Unity creators seeking to learn the workflows used for creating cross-platform user interfaces.
+- [Cross-Platform UI Project](https://assetstore.unity.com/packages/templates/tutorials/interactive-guide-cross-platform-ui-208063)
+
+---
+
+# Touch Input System
+- https://discussions.unity.com/t/get-up-and-running-with-the-input-system/1620267
+
+--- 
+
+
+---
+
+# 🎬 Unity Animation System & Mixamo Integration
+
+Animating characters brings your Unity projects to life.  
+This guide covers **Unity’s Animation System** and provides a **hands-on workflow to import Mixamo animations**.
+
+---
+
+## 📌 What is the Unity Animation System?
+
+The **Unity Animation System** allows you to animate characters and objects using:
+
+- **Keyframe Animation**: Manual animation inside Unity.
+- **Imported Animations**: From tools like Mixamo, Blender, or Maya.
+- **Animator Controller**: A state machine that manages multiple animations and transitions.
+
+### Key Concepts
+
+| Concept | Description |
+|---------|-------------|
+| **Animator Component** | Attaches to a GameObject to control animations. |
+| **Animation Clip** | A single animation sequence (e.g., walk, run, jump). |
+| **Animator Controller** | Organizes animation clips in states and transitions. |
+| **Blend Trees** | Smoothly blend between multiple animations based on parameters. |
+| **Root Motion** | Moves the GameObject in world space according to the animation. |
+
+---
+
+## ⚙️ Unity Animator Setup
+
+1. **Add Animator Component**
+   - Select your character in the **Hierarchy**.
+   - Click **Add Component → Animator**.
+   - Create or assign an **Animator Controller**.
+
+2. **Open Animator Controller**
+   - Double-click the Animator Controller in **Project Window**.
+   - Add states by dragging animation clips into the Animator.
+   - Define **transitions** between states based on conditions like speed or triggers.
+
+---
+
+## 🌐 Using Mixamo Animations in Unity
+
+**Mixamo** provides free rigged characters and pre-made animations. Follow these steps to integrate Mixamo animations into Unity.
+
+### Step 1: Choose or Upload Character
+1. Go to [Mixamo.com](https://www.mixamo.com/).
+2. Select a character from the library or upload your own rigged character.
+
+### Step 2: Pick Animations
+1. Search for the desired animation (walk, run, jump, attack, etc.).
+2. Click the animation to preview it in the Mixamo viewer.
+
+### Step 3: Download Animation
+1. Click **Download**.
+2. Choose **FBX for Unity**.
+3. Set **Pose → T-Pose**.
+4. Choose **With Skin** (for full character) or **Without Skin** (if adding only animation).
+
+### Step 4: Import into Unity
+1. Drag the downloaded FBX into **Assets** in Unity.
+2. Select the FBX file, go to **Rig** tab, and set:
+   - **Animation Type → Humanoid**
+   - Click **Apply**.
+3. Unity automatically generates **Animation Clips** from the FBX.
+
+### Step 5: Configure Animator Controller
+1. Open your **Animator Controller**.
+2. Drag the imported Animation Clips into the Animator window.
+3. Create **transitions** between animations.
+   - Example: Idle → Walk → Run
+4. Add **parameters**:
+   - Float: `Speed` for movement
+   - Trigger: `Jump` for jump animation
+
+### Step 6: Enable Root Motion (Optional)
+- If the animation moves the character in world space (e.g., walking forward), check **Apply Root Motion** in the Animator.
+
+---
+
+## 🛠️ Controlling Animations via Script
+
+```csharp
+using UnityEngine;
+
+public class CharacterController : MonoBehaviour
+{
+    public Animator animator;
+
+    void Update()
+    {
+        float move = Input.GetAxis("Vertical");
+        animator.SetFloat("Speed", move);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            animator.SetTrigger("Jump");
         }
     }
 }
 ```
 
-4. Register the prefab in:
-   `Fusion → Network Project Config → Prefabs`
-
 ---
 
-### 3. Handle Player Movement
-
-Fusion provides **input prediction** to reduce lag.
-
-```csharp
-using Fusion;
-using UnityEngine;
-
-public class PlayerMovement : NetworkBehaviour
-{
-    [Networked] private Vector3 Position { get; set; }
-
-    public override void FixedUpdateNetwork()
-    {
-        if (GetInput(out NetworkInputData data))
-        {
-            Vector3 move = new Vector3(data.horizontal, 0, data.vertical) * 5f * Runner.DeltaTime;
-            Position += move;
-        }
-
-        transform.position = Position;
-    }
-}
-
-public struct NetworkInputData : INetworkInput
-{
-    public float horizontal;
-    public float vertical;
-}
-```
-
-And an **Input Handler**:
-
-```csharp
-using Fusion;
-using UnityEngine;
-
-public class InputHandler : MonoBehaviour, INetworkRunnerCallbacks
-{
-    public void OnInput(NetworkRunner runner, NetworkInput input)
-    {
-        NetworkInputData data = new NetworkInputData
-        {
-            horizontal = Input.GetAxisRaw("Horizontal"),
-            vertical = Input.GetAxisRaw("Vertical")
-        };
-        input.Set(data);
-    }
-
-    // Other INetworkRunnerCallbacks methods can be left empty
-}
-```
-
----
-
-## 🧪 Playtest
-
-* Open **two instances** of your game.
-* One will **host** (server), the other will **join** automatically.
-* Move each player independently with `WASD`.
-
----
-
-## ⚡ Advanced Features
-
-* **Lag Compensation** → `Runner.LagCompensation` for hitscan accuracy.
-* **Shared Mode** → Multiple peers simulate together (no central server).
-* **Client Prediction & Reconciliation** → Built-in for smooth gameplay.
-* **Tick-based Events** → Deterministic simulation.
-
----
-
-## 📚 Learning Resources
-
-* [Photon Fusion Documentation](https://doc.photonengine.com/fusion/current/getting-started/overview)
-* [Photon Fusion Samples on GitHub](https://github.com/Exit-Games/Fusion)
-* [Fusion Academy Tutorials](https://doc.photonengine.com/fusion/current/tutorials/overview)
-
----
-
-## ✅ Best Practices
-
-* Always **register prefabs** in Network Project Config.
-* Use **`Networked` properties** instead of manually syncing variables.
-* Minimize use of `RPCs` – prefer state synchronization.
-* Test in **builds**, not just the Unity Editor (two Editors can cause issues).
-
----
-
-## 🏆 Summary
-
-You now have:
-
-* A Fusion Runner that auto-hosts/joins sessions.
-* Networked players that spawn and move across clients.
-* Input prediction for smoother movement.
-
-Photon Fusion is powerful for real-time, large-scale multiplayer. With this foundation, you can expand to:
-
-* Matchmaking
-* Dedicated servers
-* Physics-based gameplay
-* Advanced lag compensation
+## 📌 Getting Started: Animator Controller
+https://learn.unity.com/course/introduction-to-3d-animation-systems/unit/the-animator
 
 ---
 
@@ -335,7 +742,7 @@ Example workflow:
 
 ---
 
-# 📘 Midterm Assignment: Design an Interactive Learning Application with Gamified Features
+# 📘 Midterm Assignment: Design an Gamified Learning Application
 
 ## 🎯 Objective
 
